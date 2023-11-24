@@ -1,6 +1,8 @@
 # Author: Arturo Parrales Salinas
 # Script with helper function for working with tensorflow certification prep
 import itertools
+import os
+import zipfile
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -301,6 +303,7 @@ def plot_confusion_matrix(
             size=text_size, 
         )
 
+
 def load_and_prep_image(filename, img_shape=224):
   """ 
   Reads img from filename, turns it into a tensor, reshapes it to
@@ -315,3 +318,17 @@ def load_and_prep_image(filename, img_shape=224):
   # rescale values between 0 and 1
   img = img/255.0
   return img
+
+
+def unzip_folder(filename):
+    """Unzips the downloaded file and saves it in the current dir"""
+    with zipfile.ZipFile(filename) as zip_ref:
+        zip_ref.extractall()
+
+
+def walkthrough_dir(foldername):
+    """Walk through the `filename` directory and list number of files and folders"""
+    for dirpath, dirnames, filenames in os.walk(foldername):
+        print(
+            f"'{dirpath}' has {len(dirnames)} directories and {len(filenames)} files"
+        )
