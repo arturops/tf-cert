@@ -31,7 +31,7 @@ def plot_curves(history: object, keys: List[str] = None):
     names = [""]
     if keys:
         keys = [k+"_" for k in keys]
-    names.extend(keys)
+        names.extend(keys)
 
     epochs = range(1, len(history.history["loss"])+1)
 
